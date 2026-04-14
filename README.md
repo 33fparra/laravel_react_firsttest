@@ -1,59 +1,187 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <a href="https://laravel.com" target="_blank">
+    <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
+  </a>
 </p>
 
-## About Laravel
+# Aeela - Sistema de Gestión Empresarial
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## ¿De qué trata este proyecto?
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Este es un sistema para gestionar empresas. Imagina una tienda o negocio:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- ** controlas qué productos tienes** (inventario)
+- **controlas las ventas** (punto de venta)
+- **guardas información de tus clientes**
+- **puedes ver reportes** de cuánto vendes
 
-## Learning Laravel
+Todo eso es **Aeela**.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## ¿Cómo funciona? (Explicado fácil)
 
-## Laravel Sponsors
+El sistema tiene dos partes que trabajan juntas:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 🖥️ Frontend (Lo que ves en pantalla)
 
-### Premium Partners
+Está en la carpeta: `resources/js/`
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Aquí está el código de las pantallas que el usuario ve:
 
-## Contributing
+- `Login.jsx` - pantalla para iniciar sesión
+- `Register.jsx` - pantalla para crear cuenta
+- `Welcome.jsx` - la página principal
+- `Dashboard.jsx` - el panel después de entrar
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Quando abres una página, el navegador descargga estos archivos y los muestra.
 
-## Code of Conduct
+### ⚙️ Backend (Lo que no ves, pero hace todo el trabajo)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Está en la carpeta: `app/`
 
-## Security Vulnerabilities
+Aquí está la lógica:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- `app/Http/Controllers/Auth/` - controla el login, registro, etc.
+- `app/Models/User.php` - define cómo son los usuarios en la base de datos
 
-## License
+### 🗄️ Base de datos (Donde se guarda todo)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+La base de datos actual es **MySQL** (la de XAMPP).
+
+Las tablas están en: `database/migrations/`
+
+Tablas importantes:
+
+- `users` - usuarios del sistema (nombre, email, contraseña)
+- `sessions` - para mantener la sesión iniciada
+- `password_reset_tokens` - para recuperar contraseña
+
+---
+
+## ¿Qué necesitas para ponerlo a运行?
+
+### Programas necesarios:
+
+1. **PHP** - ya viene con XAMPP
+2. **Composer** - gestor de dependencias de PHP
+3. **Node.js** - para el frontend
+4. **npm** - viene con Node.js
+5. **XAMPP** - para MySQL (la base de datos)
+
+### Langkah-langkah menjalankan:
+
+```bash
+# 1. Instalar dependencias de PHP
+composer install
+
+# 2. Instalar dependencias de frontend
+npm install
+
+# 3. Copiar archivo de configuración
+cp .env.example .env
+
+# 4. Generar clave de la app
+php artisan key:generate
+
+# 5. Crear la base de datos (en MySQL de XAMPP)
+# Ve a localhost/phpmyadmin y crea una base de datos llamada: bd_larabel_local
+
+# 6. Crear las tablas
+php artisan migrate
+
+# 7. Levantar el servidor (dos Terminales)
+
+# Terminal 1 - Backend
+php artisan serve
+
+# Terminal 2 - Frontend
+npm run dev
+```
+
+### Después de ejecutar:
+
+- Backend: **http://localhost:8000**
+- Frontend: **http://localhost:5173**
+
+Generalmente vas a **http://localhost:8000** y ahí ves la página principal.
+
+---
+
+## Sobre la base de datos
+
+**Ahora mismo usa:** MySQL (de XAMPP)
+
+**Nombre de la base:** `bd_larabel_local`
+
+**Usuario:** `root`
+**Contraseña:** (vacío)
+
+**Próximamente:** Se changeará a SQL Developer (Oracle)
+
+El archivo de configuración está en `.env`:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=bd_larabel_local
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+---
+
+## Tecnologías usadas
+
+- **Laravel 12** - Framework de PHP para el backend
+- **React** - Librería de JavaScript para el frontend
+- **Inertia.js** -桥梁 entre Laravel y React (hace que se comuniquen)
+- **Vite** - ferramenta para construir el frontend
+- **Tailwind CSS** - estilos modernos
+- **MySQL** - base de datos
+
+---
+
+## Estructura de carpetas importante
+
+```
+Laravel/
+├── app/                    # Backend (lógica de PHP)
+│   └── Http/Controllers/Auth/  # Controladores de autenticación
+├── resources/js/           # Frontend (React)
+│   ├── Pages/             # Pantallas (Login, Register, etc.)
+│   ├── Layouts/           # Diseño base
+│   └── Components/       # Componentes pequeños
+├── routes/                # Rutas del sistema
+├── database/
+│   └── migrations/        # Tablas de la base de datos
+├── public/                # Archivos públicos (logos, etc.)
+└── .env                  # configuración (NO se sube a GitHub)
+```
+
+---
+
+## Información importante
+
+**NO subir a GitHub:**
+
+- `node_modules/` - dependencias de npm
+- `vendor/` - dependencias de Composer
+- `.env` - tiene contraseñas
+- `public/build/` - se genera con `npm run build`
+
+El archivo `.gitignore` ya-excluye estos.
+
+---
+
+## ¿Tienes dudas?
+
+Si algo no funciona, revisa:
+
+1. ¿XAMPP está corriendo? (activa Apache y MySQL)
+2. ¿La base de datos `bd_larabel_local` existe?
+3. ¿Ejecutaste `php artisan migrate`?
+4. ¿Tienes npm instalado? (`npm -v`)
+
+¡Listo! 🎉

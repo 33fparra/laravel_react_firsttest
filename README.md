@@ -59,7 +59,7 @@ Tablas importantes:
 
 ---
 
-## ¿Qué necesitas para ponerlo a运行?
+## ¿Qué necesitas para ponerlo a correr?
 
 ### Programas necesarios:
 
@@ -136,7 +136,7 @@ DB_PASSWORD=
 
 - **Laravel 12** - Framework de PHP para el backend
 - **React** - Librería de JavaScript para el frontend
-- **Inertia.js** -桥梁 entre Laravel y React (hace que se comuniquen)
+- **Inertia.js** - Pegamento entre Laravel y React (hace que se comuniquen)
 - **Vite** - ferramenta para construir el frontend
 - **Tailwind CSS** - estilos modernos
 - **MySQL** - base de datos
